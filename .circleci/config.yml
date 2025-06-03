@@ -1,0 +1,27 @@
+version: 2.1
+
+executors:
+  node-executor:
+    docker:
+      - image: cimg/node:20.2.0
+    working_directory: ~/project
+
+jobs:
+  run-postman-tests:
+    executor: node-executor
+    steps:
+      - checkout
+      - run:
+          name: Установка Newman
+          command: |
+            npm install -g newman
+      - run:
+          name: Запуск Postman тестов
+          command: |
+            newman run Lesson4 --environment MyEnv.postman_environment.json
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - run-postman-tests
