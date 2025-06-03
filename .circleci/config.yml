@@ -6,14 +6,6 @@
         - image: cimg/node:20.2.0
       working_directory: ~/project
 
-  version: 2.1
-
-  executors:
-    node-executor:
-      docker:
-        - image: cimg/node:20.2.0
-      working_directory: ~/project
-
   jobs:
     run-postman-tests:
       executor: node-executor
